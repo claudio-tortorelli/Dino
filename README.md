@@ -62,5 +62,6 @@ Change Log
 - Options parsing minor bugfix
 - Added verbose output
 - Added some sample data
+
 <b>1.0.0 2020-02-17</b>
 - First version
