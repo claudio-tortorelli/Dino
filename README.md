@@ -46,6 +46,12 @@ Input/output Data
 Input data are never modified or deleted.
 Output data are overwritten.
 
+Credits
+-----
+Ray Cast algorithm https://www.codeproject.com/Tips/626992/Check-if-a-Point-is-Inside-the-Polygon-Using-Ray-C
+MercatorConverter is a C# porting of this python version 
+https://gis.stackexchange.com/questions/15269/how-to-convert-lat-long-to-meters-using-mercator-projection-in-c
+
 Change Log
 ------
 1.0.0 2020-02-17 First version
