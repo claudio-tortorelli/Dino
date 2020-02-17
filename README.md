@@ -36,6 +36,7 @@ The option file is a standard txt file with following entries
 - verbose=[true|false], default = true, process output is printed to console
   
 A sample option file is included into sources.
+
 (*) required
 
 Input/output Data
@@ -57,7 +58,7 @@ Credits
 
 Change Log
 ------
-1.0.1 2020-02-18  Options parsing minor bugfix
-                  Added verbose output
-                  Added some sample data
-1.0.0 2020-02-17  First version
+- 1.0.1 2020-02-18  Options parsing minor bugfix
+                    Added verbose output
+                    Added some sample data
+- 1.0.0 2020-02-17  First version
