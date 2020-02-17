@@ -25,14 +25,16 @@ Option file and usage
 synopsis: Dino.exe <option file path>
   
 The option file is a standard txt file with following options
-  trackFolder=<gpx folder path>
-  areaFolder=<kml folder path>
-  csvPath=<csv output path>
-  multiarea=[yes|no], default = yes -> a track can be linked to more than one area
-  threshold=0.2, 
-  projectionType=[mercator|none], default = mercator
-  decimate=[yes|no], default = yes -> if the decimation gpx version must be generated
-  maxPoint=100
+- trackFolder=<gpx folder path>
+- areaFolder=<kml folder path>
+- csvPath=<csv output path>
+- multiarea=[yes|no], default = yes -> a track can be linked to more than one area
+- threshold=0.2, 
+- projectionType=[mercator|none], default = mercator
+- decimate=[yes|no], default = yes -> if the decimation gpx version must be generated
+- maxPoint=100
+  
+Sample option file is included into sources.
 
 Input/output Data
 ------
