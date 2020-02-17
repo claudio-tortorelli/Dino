@@ -1,11 +1,11 @@
 # Dino
-A C# tool for automatic GPX track classification against KML area polygons
+A C# CLI tool for automatic GPX track classification against KML area polygons
 
 ----
 
 Purposes
 --------
-This tool was developed to support Arezzo section (www.caiarezzo.it) of Italian Alpine Club (www.cai.it/) to classify thousand of GPX in a set of categories (eg. valleys and mountains of the region).
+This tool was developed to support Arezzo section (www.caiarezzo.it) of Italian Alpine Club (www.cai.it/) to classify thousand of GPX into a set of categories (eg. valleys and mountains of the region).
 GPX were acquired with a Garmin GPS and KML area were drawn and exported with Google Earth.
 
 Warning: input data and results were tested in this specific context only.
@@ -24,17 +24,19 @@ Option file and usage
 ------
 synopsis: Dino.exe <option file path>
   
-The option file is a standard txt file with following options
-- trackFolder=[gpx folder path]
-- areaFolder=[kml folder path]
-- csvPath=[csv output path]
-- multiarea=[yes|no], default = yes -> a track can be linked to more than one area
-- threshold=0.2, 
+The option file is a standard txt file with following entries
+- trackFolder=[gpx folder path]  (*)
+- areaFolder=[kml folder path] (*)
+- csvPath=[csv output path] (*)
+- multiarea=[true|false], default = true -> a track can be linked to more than one area
+- threshold=[0,1], default=0.2 -> ratio of track points inside an area over the total, needed to link track and area
 - projectionType=[mercator|none], default = mercator
-- decimate=[yes|no], default = yes -> if the decimation gpx version must be generated
-- maxPoint=100
+- decimate=[true|false], default = true -> if the decimation gpx version must be generated
+- maxPoint=<integer>, default = 100 -> max number of points of a decimated track
+- verbose=[true|false], default = true, process output is printed to console
   
-Sample option file is included into sources.
+A sample option file is included into sources.
+(*) required
 
 Input/output Data
 ------
@@ -55,5 +57,7 @@ Credits
 
 Change Log
 ------
-1.0.0 2020-02-17 First version
-
+1.0.1 2020-02-18  Options parsing minor bugfix
+                  Added verbose output
+                  Added some sample data
+1.0.0 2020-02-17  First version
