@@ -60,7 +60,9 @@ Change Log
 ------
 - 1.0.1 2020-02-18  
         - Options parsing minor bugfix
+        
         - Added verbose output
+        
         - Added some sample data
 - 1.0.0 2020-02-17  
         - First version
