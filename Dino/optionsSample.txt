@@ -1,8 +1,6 @@
 trackFolder=C:\CaiTracks\data\finaliSito
 areaFolder=C:\CaiTracks\data\PolygonVallate
 csvPath=C:\CaiTracks\data\outVallate.csv
-datum=WGS 84
-zone=32N
 multiarea=yes
 threshold=0.2
 projectionType=mercator
