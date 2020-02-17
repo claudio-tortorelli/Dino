@@ -51,6 +51,10 @@ namespace Dino
         /// maximum number of point inside a decimated gpx
         /// </summary>
         public static int _maxPoints = 100;
+        /// <summary>
+        /// the output is printed to console
+        /// </summary>
+        public static bool _verbose = true;
 
 
         /// <summary>
@@ -60,53 +64,60 @@ namespace Dino
         {
             string[] lines = System.IO.File.ReadAllLines(@optionPath);
 
-            Console.WriteLine("[PARSING OPTIONS]");
+            Program.Log("[PARSING OPTIONS]");
             foreach (string optLine in lines)
             {
                 string line = optLine.ToLower();
                 if (line.StartsWith("trackfolder="))
                 {
                     _trackfolder = line.Replace("trackfolder=", "");
-                    Console.WriteLine("trackfolder=" + _trackfolder);
+                    Program.Log("trackfolder=" + _trackfolder);
                 }
                 else if (line.StartsWith("areafolder="))
                 {
                     _areafolder = line.Replace("areafolder=", "");
-                    Console.WriteLine("areafolder=" + _areafolder);
+                    Program.Log("areafolder=" + _areafolder);
                 }             
                 else if (line.StartsWith("multiarea="))
                 {
                     string multiarea = line.Replace("multiarea=", "");
-                    Console.WriteLine("multiarea=" + multiarea);
-                    if (multiarea.Equals("no"))
+                    Program.Log("multiarea=" + multiarea);
+                    if (multiarea.Equals("false"))
                         _multiarea = false;
                 }
                 else if (line.StartsWith("threshold="))
                 {
                     _threshold = double.Parse(line.Replace("threshold=", "").Replace(',', '.'), CultureInfo.InvariantCulture);
-                    Console.WriteLine("threshold=" + _threshold);
+                    Program.Log("threshold=" + _threshold);
                 }
                 else if (line.StartsWith("csvpath="))
                 {
                     _csvpath = line.Replace("csvpath=", "");
-                    Console.WriteLine("csvpath=" + _csvpath);
+                    Program.Log("csvpath=" + _csvpath);
                 }
                 else if (line.StartsWith("projectiontype="))
                 {
                     _projectionType = line.Replace("projectiontype=", "");
-                    Console.WriteLine("projectiontype=" + _projectionType);
+                    Program.Log("projectiontype=" + _projectionType);
                 }
                 else if (line.StartsWith("decimate="))
                 {
                     string decimate = line.Replace("decimate=", "");
-                    Console.WriteLine("decimate=" + _decimate);
-                    if (decimate.Equals("no"))
+                    Program.Log("decimate=" + decimate);
+                    if (decimate.Equals("false"))
                         _decimate = false;
                 }
                 else if (line.StartsWith("maxpoint="))
                 {
                     _maxPoints = int.Parse(line.Replace("maxpoint=", ""));
-                    Console.WriteLine("maxpoint=" + _maxPoints);
+                    Program.Log("maxpoint=" + _maxPoints);
+                }
+                else if (line.StartsWith("verbose="))
+                {
+                    string verbose = line.Replace("verbose=", "");
+                    Program.Log("verbose=" + verbose);
+                    if (verbose.Equals("false"))
+                        _verbose = false;
                 }
             }
 
@@ -122,7 +133,7 @@ namespace Dino
             {
                 throw new Exception("Invalid Output path");
             }
-            Console.WriteLine("[DONE]");
+            Program.Log("[DONE]");
         }
     }
 }

@@ -1,8 +1,0 @@
-trackFolder=C:\CaiTracks\data\finaliSito
-areaFolder=C:\CaiTracks\data\PolygonVallate
-csvPath=C:\CaiTracks\data\outVallate.csv
-multiarea=yes
-threshold=0.2
-projectionType=mercator
-decimate=yes
-maxPoint=100

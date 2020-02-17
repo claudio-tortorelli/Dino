@@ -15,8 +15,8 @@ namespace Dino
         /// </summary>
         public static void Decimate(string trackFolder, double maxPoints)
         {
-            Console.WriteLine("----------------------");
-            Console.WriteLine("[APPLYING POINT DECIMATION");
+            Program.Log("----------------------");
+            Program.Log("[APPLYING POINT DECIMATION");
 
             // create output folder
             string outFolderPath = trackFolder + Path.DirectorySeparatorChar + Constants.DECIMATION_FOLD;
@@ -27,7 +27,7 @@ namespace Dino
             foreach (var file in d.GetFiles("*" + Constants.GPX))
             {
                 string curFileName = file.Name.Replace(Constants.GPX, "");
-                Console.Write("  " + curFileName);
+                Program.Log("  " + curFileName, false);
 
                 using (StreamWriter outputFile = new StreamWriter(outFolderPath + Path.DirectorySeparatorChar + file.Name, false))
                 {
@@ -54,11 +54,11 @@ namespace Dino
                     }
                     gpxDoc.Save(outputFile);
 
-                    Console.WriteLine(String.Format(" > decimated from {0} points to {1} points", nl.Count, residualPts));
+                    Program.Log(String.Format(" > decimated from {0} points to {1} points", nl.Count, residualPts));
                 }
             }
 
-            Console.WriteLine("[DONE]");
+            Program.Log("[DONE]");
         }
     }
 }

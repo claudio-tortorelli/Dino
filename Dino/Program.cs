@@ -27,18 +27,18 @@ namespace Dino
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.FileVersion;
 
-            Console.WriteLine("--------------------------------------------------");
-            Console.WriteLine("Dino v. {0} - CaiArezzo.it - Claudio Tortorelli", version);
-            Console.WriteLine("--------------------------------------------------\n");
+            Program.Log("--------------------------------------------------");
+            Program.Log(String.Format("Dino v. {0} - CaiArezzo.it - Claudio Tortorelli", version));
+            Program.Log("--------------------------------------------------\n");
 
             if (args.Length != 1)
             {
-                Console.WriteLine("Help: options file path is needed as argument");
+                Program.Log("Help: options file path is needed as argument");
                 return;
             }
             if (!File.Exists(args[0]))
             {
-                Console.Error.WriteLine("Options file not found");
+                Program.Log("Options file not found");
                 return;
             }
             // parsing options from file
@@ -62,11 +62,22 @@ namespace Dino
             }
 
             stopwatch.Stop();
-            Console.WriteLine("---------------------------");
-            Console.WriteLine(_tracks.Count + " tracks processed against " + _area.Count + " areas");
-            Console.WriteLine("Process done in {0} seconds", stopwatch.ElapsedMilliseconds / 1000);
-            Console.WriteLine("---------------------------");
+            Program.Log("---------------------------");
+            Program.Log(_tracks.Count + " tracks processed against " + _area.Count + " areas");
+            Program.Log(String.Format("Process done in {0} seconds", stopwatch.ElapsedMilliseconds / 1000));
+            Program.Log("---------------------------");
             //Console.ReadKey();
+        }
+
+        public static void Log(string msg, bool breakLine = true)
+        {
+            if (!Options._verbose)
+                return; // silent
+
+            if (breakLine)
+                Console.WriteLine(msg);
+            else
+                Console.Write(msg);
         }
 
         /// <summary>
@@ -74,17 +85,17 @@ namespace Dino
         /// </summary>
         private static void ClassifyTracks(StreamWriter outFile)
         {
-            Console.WriteLine("----------------------");
-            Console.WriteLine("[TRACKS CLASSIFICATION]");
+            Program.Log("----------------------");
+            Program.Log("[TRACKS CLASSIFICATION]");
 
             foreach (KeyValuePair<string, MapPoint[]> entryTrack in _tracks)
             {
-                Console.WriteLine(entryTrack.Key);
+                Program.Log(entryTrack.Key);
                 string insideArea = "";
                 int totPts = entryTrack.Value.Length;
                 foreach (KeyValuePair<string, MapPoint[]> entryArea in _area)
                 {
-                    Console.Write(" | " + entryArea.Key);
+                    Program.Log(" | " + entryArea.Key, false);
                     int insidePts = 0;
                     for (int iPt = 0; iPt < totPts; iPt++)
                     {
@@ -97,13 +108,13 @@ namespace Dino
                     {
                         // add to area
                         insideArea += entryArea.Key + Constants.CSV_SEP;
-                        Console.WriteLine(" > YES");
+                        Program.Log(" > YES");
 
                         if (!Options._multiarea)
                             break;                        
                     }
                     else
-                        Console.WriteLine(" > NO");                    
+                        Program.Log(" > NO");                    
 
                 }
                 string result = "";
@@ -112,10 +123,10 @@ namespace Dino
                 else
                     result = (entryTrack.Key + Constants.CSV_SEP).Trim();
                 outFile.WriteLine(result);
-                Console.WriteLine(" --> " + result);
+                Program.Log(" --> " + result);
             }
 
-            Console.WriteLine("[DONE]");
+            Program.Log("[DONE]");
         }
     }
 }

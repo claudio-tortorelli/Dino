@@ -21,8 +21,8 @@ namespace Dino
         /// </summary>
         public static SortedDictionary<string, MapPoint[]> Tracks(string trackFolder, string projectionType)
         {
-            Console.WriteLine("----------------------");
-            Console.WriteLine("[LOADING TRACKS]");
+            Program.Log("----------------------");
+            Program.Log("[LOADING TRACKS]");
 
             SortedDictionary<string, MapPoint[]> outTracks = new SortedDictionary<string, MapPoint[]>();
 
@@ -30,7 +30,7 @@ namespace Dino
             foreach (var file in d.GetFiles("*" + Constants.GPX))
             {
                 string curFileName = file.Name.Replace(Constants.GPX, "");
-                Console.Write("  " + curFileName);
+                Program.Log("  " + curFileName, false);
 
                 XmlDocument gpxDoc = new XmlDocument();
                 gpxDoc.Load(file.FullName);
@@ -70,13 +70,13 @@ namespace Dino
                     }
                     catch (Exception ex)
                     {
-                        Console.Error.WriteLine(" !! point parsing error: " + ex.Message);
+                        Program.Log(" !! point parsing error: " + ex.Message);
                     }
                 }
-                Console.WriteLine(String.Format(" > extracted {0} points", nl.Count));
+                Program.Log(String.Format(" > extracted {0} points", nl.Count));
                 outTracks.Add(curFileName, curTrack);                
             }
-            Console.WriteLine("[DONE]");
+            Program.Log("[DONE]");
             return outTracks;
         }
 
@@ -85,19 +85,16 @@ namespace Dino
         /// </summary>
         public static SortedDictionary<string, MapPoint[]> Area(string areaFolder, string projectionType)
         {
-            Console.WriteLine("----------------------");
-            Console.WriteLine("[LOADING AREA]");
+            Program.Log("----------------------");
+            Program.Log("[LOADING AREA]");
 
             SortedDictionary<string, MapPoint[]> outArea = new SortedDictionary<string, MapPoint[]>();
-
-            string outFolderPath = areaFolder + Path.DirectorySeparatorChar + Constants.OUT_FOLD;
-            Directory.CreateDirectory(outFolderPath);
 
             DirectoryInfo d = new DirectoryInfo(areaFolder);
             foreach (var file in d.GetFiles("*" + Constants.KML))
             {
                 string curFileName = file.Name.Replace(Constants.KML, "");
-                Console.Write("  " + curFileName);
+                Program.Log("  " + curFileName, false);
 
                 XmlDocument kmlDoc = new XmlDocument();
                 kmlDoc.Load(file.FullName);
@@ -139,14 +136,14 @@ namespace Dino
                         }
                         catch (Exception ex)
                         {
-                            Console.Error.WriteLine(" !! point parsing error: " + ex.Message);
+                            Program.Log(" !! point parsing error: " + ex.Message);
                         }
                     }
                 }
                 outArea.Add(curFileName, curArea);
-                Console.WriteLine(String.Format(" > extracted {0} point", counter));
+                Program.Log(String.Format(" > extracted {0} point", counter));
             }
-            Console.WriteLine("[DONE]");
+            Program.Log("[DONE]");
             return outArea;
         }
     }
