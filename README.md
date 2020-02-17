@@ -10,7 +10,7 @@ GPX were acquired with a Garmin GPS and KML area were drawn and exported with Go
 
 Warning: input data and results were tested in this specific context only.
 
-This work is dedicated to Donato 'Dino' Ginepri, a CAI member and a friend.
+This work is dedicated to <b>Donato 'Dino' Ginepri</b>, a CAI member and a friend.
 
 Features
 ------
@@ -58,11 +58,9 @@ Credits
 
 Change Log
 ------
-- 1.0.1 2020-02-18  
-        - Options parsing minor bugfix
-        
-        - Added verbose output
-        
-        - Added some sample data
-- 1.0.0 2020-02-17  
-        - First version
+<b>1.0.1 2020-02-18</b>
+- Options parsing minor bugfix
+- Added verbose output
+- Added some sample data
+<b>1.0.0 2020-02-17</b>
+- First version
