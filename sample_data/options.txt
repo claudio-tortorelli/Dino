@@ -1,9 +1,0 @@
-trackFolder=.\data\tracks
-areaFolder=.\data\valleys
-csvPath=.\data\out.csv
-multiarea=true
-threshold=0.2
-projectionType=mercator
-decimate=true
-maxPoint=100
-verbose=true
