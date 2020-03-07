@@ -8,7 +8,7 @@ Purposes
 This tool was developed to support Arezzo section (www.caiarezzo.it) of Italian Alpine Club (www.cai.it/) to classify thousand of GPX into a set of categories (eg. valleys and mountains of the region).
 GPX were acquired with a Garmin GPS and KML area were drawn and exported with Google Earth.
 
-<bWarning</b>: input data and results were tested in this specific context only.
+<b>Warning</b>: input data and results were tested in this specific context only.
 
 This work is dedicated to <b>Donato 'Dino' Ginepri</b>, a CAI member and a friend.
 
@@ -67,8 +67,7 @@ Credits
   https://www.codeproject.com/Tips/626992/Check-if-a-Point-is-Inside-the-Polygon-Using-Ray-C
 - MercatorConverter is a C# porting of this python version 
   https://gis.stackexchange.com/questions/15269/how-to-convert-lat-long-to-meters-using-mercator-projection-in-c
-- leaflet map library (https://leafletjs.com/)
-  gpx plugins and samples
+- leaflet map library (https://leafletjs.com/); gpx plugins and samples
   https://github.com/StephSaephan/leaflet-map-example
   https://github.com/mpetazzoni/leaflet-gpx
 
