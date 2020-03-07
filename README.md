@@ -75,6 +75,7 @@ Change Log
 ------
 <b>1.1.0 2020-03-07</b>
 - Added leaflet optional map building
+- GPX decimation
 
 <b>1.0.1 2020-02-18</b>
 - Options parsing minor bugfix
