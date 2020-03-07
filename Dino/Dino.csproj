@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,17 +49,51 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Decimator.cs" />
     <Compile Include="LatLngMercatorConverter.cs" />
+    <Compile Include="LeafletGPX\TemplateBounds.cs" />
     <Compile Include="Loader.cs" />
+    <Compile Include="MapBuilder.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="PIP.cs" />
     <Compile Include="MapPoint.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LeafletGPX\TemplateGPX.cs" />
+    <Compile Include="LeafletGPX\TemplateMap.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\gpx.js" />
+    <EmbeddedResource Include="Resources\leaflet-providers.js" />
+    <EmbeddedResource Include="Resources\leaflet.css" />
+    <EmbeddedResource Include="Resources\leaflet.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="options.txt" />
+    <EmbeddedResource Include="Resources\Control.MiniMap.css" />
+    <EmbeddedResource Include="Resources\Control.MiniMap.min.js" />
+    <EmbeddedResource Include="Resources\leaflet.groupedlayercontrol.min.css" />
+    <EmbeddedResource Include="Resources\leaflet.groupedlayercontrol.min.js" />
+    <EmbeddedResource Include="Resources\pin.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

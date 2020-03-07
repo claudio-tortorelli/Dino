@@ -1,0 +1,11 @@
+trackFolder=..\..\..\bin\sample_data\tracks
+areaFolder=..\..\..\bin\sample_data\valleys
+csvPath=..\..\..\bin\sample_data\out.csv
+multiarea=true
+threshold=0.2
+projectionType=wgs84
+decimate=true
+maxPoint=100
+buildMapArea=true
+mapFolder=..\..\..\bin\sample_data\map
+verbose=true

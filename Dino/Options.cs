@@ -15,15 +15,15 @@ namespace Dino
         /// <summary>
         /// path of input folder where gpx track are stored
         /// </summary>
-        public static string _trackfolder;
+        public static string _trackfolder = "";
         /// <summary>
         /// path of the input folder where kml area are stored
         /// </summary>
-        public static string _areafolder;
+        public static string _areafolder = "";
         /// <summary>
         /// path of the output csv
         /// </summary>
-        public static string _csvpath;
+        public static string _csvpath = "";
         /// <summary>
         /// true if a track can be classified in more than one area
         /// default = true
@@ -37,11 +37,11 @@ namespace Dino
         /// </summary>
         public static double _threshold = 0.2;
         /// <summary>
-        /// kind of planar coordinates projection.
-        /// Allowed values: mercator, none
+        /// kind of planar coordinates converter.
+        /// Allowed values: mercator, wgs84
         /// default = mercator
         /// </summary>
-        public static string _projectionType = "mercator";
+        public static string _projectionType = "wgs84";
         /// <summary>
         /// true if a decimated copy of gpx must be generated
         /// default = true
@@ -51,6 +51,14 @@ namespace Dino
         /// maximum number of point inside a decimated gpx
         /// </summary>
         public static int _maxPoints = 100;
+        /// <summary>
+        /// true if the output leaflet maps must be built
+        /// </summary>
+        public static bool _buildMapArea = true;
+        /// <summary>
+        /// the map root folder
+        /// </summary>
+        public static string _mapFolder = "";
         /// <summary>
         /// the output is printed to console
         /// </summary>
@@ -119,6 +127,18 @@ namespace Dino
                     if (verbose.Equals("false"))
                         _verbose = false;
                 }
+                else if (line.StartsWith("buildmaparea="))
+                {
+                    string buildMapArea = line.Replace("buildmaparea=", "");
+                    Program.Log("buildMapArea=" + buildMapArea);
+                    if (buildMapArea.Equals("false"))
+                        _buildMapArea = false;
+                }
+                else if (line.StartsWith("mapfolder="))
+                {
+                    _mapFolder = line.Replace("mapfolder=", "");
+                    Program.Log("mapFolder=" + _mapFolder);
+                }
             }
 
             if (_trackfolder.Length == 0)
@@ -132,6 +152,10 @@ namespace Dino
             if (_csvpath.Length == 0)
             {
                 throw new Exception("Invalid Output path");
+            }
+            if (_buildMapArea && _mapFolder.Length == 0)
+            {
+                throw new Exception("Invalid MapFolder path");
             }
             Program.Log("[DONE]");
         }

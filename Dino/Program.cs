@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Drawing;
 
 namespace Dino
 {
@@ -20,7 +21,7 @@ namespace Dino
         /// map of input area
         /// </summary>
         private static SortedDictionary<string, MapPoint[]> _area = null;
-        
+
         static void Main(string[] args)
         {
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
@@ -59,6 +60,11 @@ namespace Dino
             using (StreamWriter outputFile = new StreamWriter(Options._csvpath, false))
             {
                 ClassifyTracks(outputFile);
+            }
+
+            if (Options._decimate && Options._buildMapArea)
+            {
+                BuildMaps();
             }
 
             stopwatch.Stop();
@@ -119,13 +125,47 @@ namespace Dino
                 }
                 string result = "";
                 if (insideArea.Length > 0)
-                    result = (entryTrack.Key + Constants.CSV_SEP + insideArea).Trim();
+                {
+                    result = (entryTrack.Key + Constants.CSV_SEP + insideArea).Trim();                    
+                }
                 else
                     result = (entryTrack.Key + Constants.CSV_SEP).Trim();
                 outFile.WriteLine(result);
+                
                 Program.Log(" --> " + result);
             }
 
+            Program.Log("[DONE]");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private static void BuildMaps()
+        {
+            Program.Log("----------------------");
+            Program.Log("[BUILDING AREA MAPS]");
+
+            string[] lines = File.ReadAllLines(Options._csvpath);
+
+            SortedDictionary<string, MapBuilder> mapBuilders = new SortedDictionary<string, MapBuilder>();
+            foreach (KeyValuePair<string, MapPoint[]> entryArea in _area)
+            {
+                mapBuilders.Add(entryArea.Key, new MapBuilder(entryArea.Key, entryArea.Value));
+            }
+            foreach (string line in lines)
+            {
+                string[] tokens = line.Split(Constants.CSV_SEP);
+                string trackName = tokens[0];
+                for (int i = 1; i < tokens.Length-1; i++)
+                {
+                    mapBuilders[tokens[i]].AddTrack(trackName);
+                }
+            }
+            foreach (KeyValuePair<string, MapBuilder> entryBuilder in mapBuilders)
+            {
+                entryBuilder.Value.Build();
+            }
             Program.Log("[DONE]");
         }
     }

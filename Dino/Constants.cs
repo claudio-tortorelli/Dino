@@ -18,6 +18,7 @@ namespace Dino
         public const string PROJ = ".prj";
         public const string GPX = ".gpx";
         public const string KML = ".kml";
+        public const string PNG = ".png";
 
         /// <summary>
         /// Folders names
@@ -25,6 +26,6 @@ namespace Dino
         public const string OUT_FOLD = "out";
         public const string DECIMATION_FOLD = "decimation";
 
-        public const string CSV_SEP = ";";
+        public const char CSV_SEP = ';';
     }
 }
