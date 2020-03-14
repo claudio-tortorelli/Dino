@@ -76,6 +76,8 @@ namespace Dino
         
         [GPX]		
 
+        [AREA]
+
     </script>
 </body>
 </html>

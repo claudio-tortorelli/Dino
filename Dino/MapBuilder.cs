@@ -59,11 +59,13 @@ namespace Dino
             ImportGPX(areaFolder);
 
             // write track markers
-            BuildMarkers(areaFolder);        
-            
+            BuildMarkers(areaFolder);
+
             // write template
             string templatePath = areaFolder + Path.DirectorySeparatorChar + "index.html";
-            string template = TemplateMap.leaflet.Replace("[TITLE]", _areaName).Replace("[GPX]", GetGPX()).Replace("[BOUNDS]", GetBounds());
+            string template = TemplateMap.leaflet.Replace("[TITLE]", _areaName)
+                                .Replace("[GPX]", GetGPX()).Replace("[BOUNDS]", GetBounds())
+                                .Replace("[AREA]", GetArea());
             File.WriteAllText(templatePath, template);
             Program.Log(" --> " + _areaName + " built");
         }
@@ -173,6 +175,25 @@ namespace Dino
                 tag += "\n";
             }
             return tag;
+        }
+
+
+        private string GetArea()
+        {
+            string latLng = "var latlngs = [\n";
+            for (int i = 0; i < _area.Length; i++)
+            {
+                MapPoint pt = _area[i];
+                string lon = String.Format("{0:0.00}", pt.X()).Replace(",", ".");
+                string lat = String.Format("{0:0.00}", pt.Y()).Replace(",", ".");
+                if (i < _area.Length-1)
+                    latLng += string.Format("[{0}, {1}],\n", lon, lat);
+                else
+                    latLng += string.Format("[{0}, {1}]\n", lon, lat);
+            }
+            latLng += "];\n";
+
+            return String.Format("{0}\nL.polyline(latlngs).addTo(map)", latLng);
         }
 
         private string GetBounds()
