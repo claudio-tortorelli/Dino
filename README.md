@@ -73,6 +73,9 @@ Credits
 
 Change Log
 ------
+<b>1.1.1 2020-03-14</b>
+- Added area layer to leaflet map
+
 <b>1.1.0 2020-03-07</b>
 - Added leaflet optional map building
 - GPX decimation
