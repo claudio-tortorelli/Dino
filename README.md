@@ -59,7 +59,9 @@ Under bin folder is included a binary built with Visual Studio 2012.
 In the sample_data folder are stored some test gpx and kml.
 
 A leaflet map folder deployed on my web server is visible at this link
-https://www.claudiotortorelli.it/dino/pratomagno/
+- https://www.claudiotortorelli.it/dino/pratomagno/
+- https://www.claudiotortorelli.it/dino/alpe-di-catenaia/index.html
+- https://www.claudiotortorelli.it/dino/casentino/index.html
 
 Credits
 -----
