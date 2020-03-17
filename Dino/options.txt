@@ -7,5 +7,7 @@ projectionType=wgs84
 decimate=true
 maxPoint=100
 buildMapArea=true
+showAreaOnMap=true
+showMarkers=true
 mapFolder=..\..\..\bin\sample_data\map
 verbose=true

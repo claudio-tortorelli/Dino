@@ -63,5 +63,18 @@ namespace Dino
             }
             return result;
         }
+
+        // TODO, porting from Sedgewick classic algo
+        public static bool Inside(MapPoint[] polygon, MapPoint testPoint)
+        {
+            bool isInside = false;
+            return isInside;
+        }
+
+        private static bool Instersect()
+        {
+            //TODO
+            return false;
+        }
     }
 }

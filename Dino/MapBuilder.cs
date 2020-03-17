@@ -59,7 +59,10 @@ namespace Dino
             ImportGPX(areaFolder);
 
             // write track markers
-            BuildMarkers(areaFolder);
+            if (Options._showMarkers)
+            {
+                BuildMarkers(areaFolder);
+            }
 
             // write template
             string templatePath = areaFolder + Path.DirectorySeparatorChar + "index.html";
@@ -159,7 +162,10 @@ namespace Dino
             string tag = "";
             foreach (string track in _tracks)
             {
-                tag += TemplateGPX.tag.Replace("[FILE_NAME]", track + Constants.GPX).Replace("[ICON_START]", track + "_start" + Constants.PNG).Replace("[ICON_END]", track + "_end" + Constants.PNG);
+                if (Options._showMarkers)
+                    tag += TemplateGPX.tag.Replace("[FILE_NAME]", track + Constants.GPX).Replace("[ICON_START]", track + "_start" + Constants.PNG).Replace("[ICON_END]", track + "_end" + Constants.PNG);
+                else
+                    tag += TemplateGPX.tag.Replace("[FILE_NAME]", track + Constants.GPX).Replace("[ICON_START]", "").Replace("[ICON_END]", "");
 
                 int red = _rnd.Next(10, 100);
                 int green = _rnd.Next(10, 10);
@@ -180,6 +186,8 @@ namespace Dino
 
         private string GetArea()
         {
+            if (!Options._showAreaOnMap)
+                return "";
             string latLng = "var latlngs = [\n";
             for (int i = 0; i < _area.Length; i++)
             {

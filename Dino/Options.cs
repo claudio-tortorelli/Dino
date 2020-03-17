@@ -63,6 +63,16 @@ namespace Dino
         /// the output is printed to console
         /// </summary>
         public static bool _verbose = true;
+        /// <summary>
+        /// area polygon show on map
+        /// </summary>
+        public static bool _showAreaOnMap = true;
+        /// <summary>
+        /// gpx markers show on map
+        /// </summary>
+        public static bool _showMarkers = true;
+
+        
 
 
         /// <summary>
@@ -138,6 +148,20 @@ namespace Dino
                 {
                     _mapFolder = line.Replace("mapfolder=", "");
                     Program.Log("mapFolder=" + _mapFolder);
+                }
+                else if (line.StartsWith("showareaonmap="))
+                {
+                    string showareaonmap = line.Replace("showareaonmap=", "");
+                    Program.Log("showareaonmap=" + showareaonmap);
+                    if (showareaonmap.Equals("false"))
+                        _showAreaOnMap= false;
+                }
+                else if (line.StartsWith("showmarkers="))
+                {
+                    string showmarkers = line.Replace("showmarkers=", "");
+                    Program.Log("showmarkers=" + showmarkers);
+                    if (showmarkers.Equals("false"))
+                        _showMarkers = false;
                 }
             }
 
