@@ -36,6 +36,8 @@ The option file is a standard txt with following entries
 - maxPoint=<integer>, default = 100 -> max number of points of a decimated track
 - verbose=[true|false], default = true, process output is printed to console
 - buildMapArea=[true|false], default = true, build a leaflet map with all area's tracks
+- showAreaOnMap=[true|false], default = true, shows the area polygon on the map
+- showMarkers=[true|false], default = true, shows the markers on the map
 - mapFolder=[map folder path], the folder where are stored built maps
   
 A sample option file is included into sources.
@@ -58,8 +60,7 @@ Binaries and samples
 Under bin folder is included a binary built with Visual Studio 2012.
 In the sample_data folder are stored some test gpx and kml.
 
-A leaflet map folder deployed on my web server is visible at this link
-- https://www.claudiotortorelli.it/dino/pratomagno/
+Some leaflet map folders deployed on my web server is visible at those links
 - https://www.claudiotortorelli.it/dino/alpe-di-catenaia/index.html
 - https://www.claudiotortorelli.it/dino/casentino/index.html
 
@@ -75,6 +76,9 @@ Credits
 
 Change Log
 ------
+<b>1.1.2 2020-03-17</b>
+- Options improvements about maps
+
 <b>1.1.1 2020-03-14</b>
 - Added area layer to leaflet map
 
