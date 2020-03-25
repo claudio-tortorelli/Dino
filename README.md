@@ -63,6 +63,9 @@ In the sample_data folder are stored some test gpx and kml.
 Some leaflet map folders deployed on my web server is visible at those links
 - https://www.claudiotortorelli.it/dino/casentino/index.html
 
+![Alt text](https://www.claudiotortorelli.it/dino/catenaia1.jpg?raw=true "Sample ESRI")
+![Alt text](https://www.claudiotortorelli.it/dino/catenaia2.jpg?raw=true "Sample OSM Topographic")
+
 Credits
 -----
 - Ray Cast algorithm 
