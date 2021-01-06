@@ -68,12 +68,14 @@ namespace Dino
         /// </summary>
         public static bool _showAreaOnMap = true;
         /// <summary>
-        /// gpx markers show on map
+        /// gpx start/end markers show on map
         /// </summary>
         public static bool _showMarkers = true;
-
+        /// <summary>
+        /// gpx start/end markers string will fit in the bounding box rectangle
+        /// </summary>
+        public static bool _markersFit = false;
         
-
 
         /// <summary>
         /// Parse an input option file to related members
@@ -99,13 +101,18 @@ namespace Dino
                 else if (line.StartsWith("multiarea="))
                 {
                     string multiarea = line.Replace("multiarea=", "");
+                    if (multiarea.Length == 0)
+                        continue;
                     Program.Log("multiarea=" + multiarea);
                     if (multiarea.Equals("false"))
                         _multiarea = false;
                 }
                 else if (line.StartsWith("threshold="))
                 {
-                    _threshold = double.Parse(line.Replace("threshold=", "").Replace(',', '.'), CultureInfo.InvariantCulture);
+                    string tr = line.Replace("threshold=", "");
+                    if (tr.Length == 0)
+                        continue;
+                    _threshold = double.Parse(tr.Replace(',', '.'), CultureInfo.InvariantCulture);
                     Program.Log("threshold=" + _threshold);
                 }
                 else if (line.StartsWith("csvpath="))
@@ -115,24 +122,34 @@ namespace Dino
                 }
                 else if (line.StartsWith("projectiontype="))
                 {
-                    _projectionType = line.Replace("projectiontype=", "");
+                    string proj = line.Replace("projectiontype=", "");
+                    if (proj.Length == 0)
+                        continue;
+                    _projectionType = proj;
                     Program.Log("projectiontype=" + _projectionType);
                 }
                 else if (line.StartsWith("decimate="))
                 {
                     string decimate = line.Replace("decimate=", "");
+                    if (decimate.Length == 0)
+                        continue;
                     Program.Log("decimate=" + decimate);
                     if (decimate.Equals("false"))
                         _decimate = false;
                 }
                 else if (line.StartsWith("maxpoint="))
                 {
-                    _maxPoints = int.Parse(line.Replace("maxpoint=", ""));
+                    string pts = line.Replace("maxpoint=", "");
+                    if (pts.Length == 0)
+                        continue;
+                    _maxPoints = int.Parse(pts);                    
                     Program.Log("maxpoint=" + _maxPoints);
                 }
                 else if (line.StartsWith("verbose="))
                 {
                     string verbose = line.Replace("verbose=", "");
+                    if (verbose.Length == 0)
+                        continue;
                     Program.Log("verbose=" + verbose);
                     if (verbose.Equals("false"))
                         _verbose = false;
@@ -140,6 +157,8 @@ namespace Dino
                 else if (line.StartsWith("buildmaparea="))
                 {
                     string buildMapArea = line.Replace("buildmaparea=", "");
+                    if (buildMapArea.Length == 0)
+                        continue;
                     Program.Log("buildMapArea=" + buildMapArea);
                     if (buildMapArea.Equals("false"))
                         _buildMapArea = false;
@@ -152,6 +171,8 @@ namespace Dino
                 else if (line.StartsWith("showareaonmap="))
                 {
                     string showareaonmap = line.Replace("showareaonmap=", "");
+                    if (showareaonmap.Length == 0)
+                        continue;
                     Program.Log("showareaonmap=" + showareaonmap);
                     if (showareaonmap.Equals("false"))
                         _showAreaOnMap= false;
@@ -159,10 +180,22 @@ namespace Dino
                 else if (line.StartsWith("showmarkers="))
                 {
                     string showmarkers = line.Replace("showmarkers=", "");
+                    if (showmarkers.Length == 0)
+                        continue;
                     Program.Log("showmarkers=" + showmarkers);
                     if (showmarkers.Equals("false"))
                         _showMarkers = false;
                 }
+                else if (line.StartsWith("markersFit="))
+                {
+                    string markFit = line.Replace("markersFit=", "");
+                    if (markFit.Length == 0)
+                        continue;
+                    Program.Log("markersFit=" + markFit);
+                    if (markFit.Equals("true"))
+                        _markersFit = true;
+                }
+                
             }
 
             if (_trackfolder.Length == 0)

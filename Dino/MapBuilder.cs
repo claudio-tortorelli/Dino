@@ -128,12 +128,22 @@ namespace Dino
             {
                 Bitmap bitmap = new Bitmap(areaFolderPath + Path.DirectorySeparatorChar + "pin.png");
 
+                StringFormat drawFormat = new StringFormat();
+                drawFormat.Alignment = StringAlignment.Center;
+                
                 using (Graphics graphics = Graphics.FromImage(bitmap))
                 {
                     using (Font arialFont = new Font(FontFamily.GenericSansSerif, 7.0f, FontStyle.Bold))
                     {
-                        graphics.DrawString(track, arialFont, Brushes.White, new PointF(3f, 3f));
-                        graphics.DrawString(track, arialFont, Brushes.Green, new PointF(5f, 5f));
+                        RectangleF drawRect = new RectangleF(0f, 0f, 100f, 50f);
+
+                        //Font finalFont = GetAdjustedFont(graphics, track, arialFont, (int)drawRect.Width, 7, 2, true);
+                        Font finalFont = arialFont;
+
+
+                        graphics.DrawString(track, finalFont, Brushes.White, drawRect);
+                        drawRect = new RectangleF(1f, 1f, 101f, 51f);
+                        graphics.DrawString(track, finalFont, Brushes.Green, drawRect);
                     }
                 }
 
@@ -146,8 +156,14 @@ namespace Dino
                 {
                     using (Font arialFont = new Font(FontFamily.GenericSansSerif, 7.0f, FontStyle.Bold))
                     {
-                        graphics.DrawString(track, arialFont, Brushes.White, new PointF(3f, 3f));
-                        graphics.DrawString(track, arialFont, Brushes.Red, new PointF(5f, 5f));
+                        RectangleF drawRect = new RectangleF(0f, 0f, 100f, 50f);
+
+                        //Font finalFont = GetAdjustedFont(graphics, track, arialFont, (int)drawRect.Width, 7, 2, true);
+                        Font finalFont = arialFont;
+
+                        graphics.DrawString(track, finalFont, Brushes.White, drawRect);
+                        drawRect = new RectangleF(1f, 1f, 101f, 51f);
+                        graphics.DrawString(track, finalFont, Brushes.Red, drawRect);
                     }
                 }
 
@@ -155,6 +171,36 @@ namespace Dino
                 bitmap.Dispose();
             }
             File.Delete(areaFolderPath + Path.DirectorySeparatorChar + "pin.png");
+        }
+
+        private Font GetAdjustedFont(Graphics g, string graphicString, Font originalFont, int containerWidth, int maxFontSize, int minFontSize, bool smallestOnFail)
+        {
+            Font testFont = null;
+            // We utilize MeasureString which we get via a control instance           
+            for (int adjustedSize = maxFontSize; adjustedSize >= minFontSize; adjustedSize--)
+            {
+                testFont = new Font(originalFont.Name, adjustedSize, originalFont.Style);
+
+                // Test the string with the new size
+                SizeF adjustedSizeNew = g.MeasureString(graphicString, testFont);
+
+                if (containerWidth > Convert.ToInt32(adjustedSizeNew.Width))
+                {
+                    // Good font, return it
+                    return testFont;
+                }
+            }
+
+            // If you get here there was no fontsize that worked
+            // return minimumSize or original?
+            if (smallestOnFail)
+            {
+                return testFont;
+            }
+            else
+            {
+                return originalFont;
+            }
         }
 
         private string GetGPX()

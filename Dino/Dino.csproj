@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="options.txt" />
+    <Content Include="TODO.txt" />
     <EmbeddedResource Include="Resources\Control.MiniMap.css" />
     <EmbeddedResource Include="Resources\Control.MiniMap.min.js" />
     <EmbeddedResource Include="Resources\leaflet.groupedlayercontrol.min.css" />
