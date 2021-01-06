@@ -3,3 +3,8 @@
 /Dino/obj
 
 /Dino/Dino.csproj.user
+bin/options_cai.txt
+bin/cai/
+bin/sample_data/out.csv
+bin/sample_data/map/
+bin/sample_data/tracks/decimation/

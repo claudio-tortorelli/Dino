@@ -1,0 +1,43 @@
+/// path of input folder where gpx track are stored
+trackFolder=.\sample_data\tracks
+
+/// path of the input folder where kml area are stored
+areaFolder=.\sample_data\valleys
+
+/// path of the output csv
+csvPath=.\sample_data\out.csv
+
+/// true if a track can be classified in more than one area
+multiarea=true
+
+/// threshold ration value to include a track in an area.
+/// ratio = track's points inside and area / total track's points
+/// if ratio > _threshold then the track is classified in the target area        
+threshold=0.2
+
+/// kind of planar coordinates converter.
+/// Allowed values: mercator, wgs84
+projectionType=wgs84
+
+/// true if a decimated copy of gpx must be generated
+decimate=true
+
+/// maximum number of point inside a decimated gpx
+maxPoint=100
+
+/// true if the output leaflet maps must be built
+buildMapArea=true
+
+/// the map root folder
+mapFolder=.\sample_data\map
+
+/// the output is printed to console
+verbose=true
+
+/// area polygon show on map
+showAreaOnMap=false
+
+/// gpx markers show on map
+showMarkers=true
+
+
