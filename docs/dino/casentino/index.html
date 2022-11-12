@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Casentino</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="leaflet.css"/>
+ 	<script src="leaflet.js"></script>	
+	<script src="leaflet-providers.js"></script>
+	<script src="gpx.js"></script>
+	
+    <link rel="stylesheet" href="leaflet.groupedlayercontrol.min.css">
+    <script src="leaflet.groupedlayercontrol.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="Control.MiniMap.css">
+    <script src="Control.MiniMap.min.js" type="text/javascript"></script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html,
+        body,
+        #map {
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <script>
+       var map = L.map('map', {
+            zoom: 15
+        });
+        
+        map.fitBounds([
+            [43.449,12.011], [43.877, 11.593]
+        ]);   
+              
+        var defaultBase = L.tileLayer.provider('Esri.WorldImagery').addTo(map);
+        var baseLayers = {
+            'ESRI Imagery': defaultBase,
+            'OSM Topo': L.tileLayer.provider('OpenTopoMap')
+        };
+        //Overlay grouped layers    
+        var groupOverLays = {
+            
+        };
+        //add layer switch control
+        L.control.groupedLayers(baseLayers, groupOverLays).addTo(map);
+
+        //add scale bar to map
+        L.control.scale({
+            position: 'bottomleft'
+        }).addTo(map);
+
+        // Overview mini map
+        var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+        });
+ 
+        var miniMap = new L.Control.MiniMap(Esri_WorldTopoMap, {
+            toggleDisplay: true,
+            minimized: false,
+            position: 'bottomleft'
+        }).addTo(map);
+        
+        
+        new L.GPX('T1.gpx', {
+            async: true,
+            marker_options: {				
+                startIconUrl: 'T1_start.png',
+                endIconUrl: 'T1_end.png',
+                shadowUrl: ''
+            },
+            polyline_options: {
+                color: '#390AB1',
+                weight: 3
+            }
+        }).addTo(map);
+
+        new L.GPX('T2.gpx', {
+            async: true,
+            marker_options: {				
+                startIconUrl: 'T2_start.png',
+                endIconUrl: 'T2_end.png',
+                shadowUrl: ''
+            },
+            polyline_options: {
+                color: '#470AE0',
+                weight: 3
+            }
+        }).addTo(map);
+
+        new L.GPX('T3.gpx', {
+            async: true,
+            marker_options: {				
+                startIconUrl: 'T3_start.png',
+                endIconUrl: 'T3_end.png',
+                shadowUrl: ''
+            },
+            polyline_options: {
+                color: '#480A79',
+                weight: 3
+            }
+        }).addTo(map);
+
+        new L.GPX('T4.gpx', {
+            async: true,
+            marker_options: {				
+                startIconUrl: 'T4_start.png',
+                endIconUrl: 'T4_end.png',
+                shadowUrl: ''
+            },
+            polyline_options: {
+                color: '#3B0A64',
+                weight: 3
+            }
+        }).addTo(map);
+		
+
+        var latlngs = [
+[43.88, 11.71],
+[43.87, 11.66],
+[43.82, 11.63],
+[43.81, 11.61],
+[43.77, 11.59],
+[43.70, 11.67],
+[43.65, 11.69],
+[43.63, 11.72],
+[43.56, 11.80],
+[43.47, 11.87],
+[43.47, 11.89],
+[43.45, 11.91],
+[43.51, 11.98],
+[43.53, 12.01],
+[43.58, 12.01],
+[43.61, 11.99],
+[43.65, 11.97],
+[43.69, 11.98],
+[43.74, 11.98],
+[43.77, 11.96],
+[43.81, 11.91],
+[43.82, 11.83],
+[43.85, 11.78],
+[43.88, 11.71]
+];
+
+L.polyline(latlngs).addTo(map)
+
+    </script>
+</body>
+</html>
